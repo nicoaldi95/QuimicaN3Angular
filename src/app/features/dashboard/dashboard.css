@@ -1,0 +1,25 @@
+/* Ocultar scrollbar pero mantener funcionalidad */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Efecto de cristal para el header */
+.glass-panel {
+  background: rgba(18, 22, 33, 0.8); /* Ajusta según tu bg-bg-dark */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Forzar que los iconos de Google se rellenen si lo deseas */
+.icon-fill {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Opcional: animaciones suaves para las cards */
+.snap-center {
+  scroll-snap-align: center;
+}

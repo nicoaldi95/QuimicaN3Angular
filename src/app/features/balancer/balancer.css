@@ -1,0 +1,14 @@
+/* Utilidad para ocultar el scrollbar manteniendo la funcionalidad */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Efecto de resplandor para el botón principal (si no está definido en tailwind.config.js) */
+.shadow-glow {
+  box-shadow: 0 0 15px -3px rgba(var(--primary-rgb), 0.4);
+}

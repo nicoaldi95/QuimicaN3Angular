@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './perfil.css',
 })
 export class Perfil {
-
+  // Puedes agregar lógica aquí más adelante, como:
+  // userName: string = 'Alex Reactivo';
 }
