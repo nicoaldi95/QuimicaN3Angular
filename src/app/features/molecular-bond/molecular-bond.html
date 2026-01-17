@@ -1,0 +1,84 @@
+<div class="h-full flex flex-col bg-bg-dark relative overflow-hidden">
+  <div class="absolute inset-0 chemical-grid opacity-50 pointer-events-none"></div>
+  
+  <header class="sticky top-0 z-50 glass-panel px-6 py-4 flex items-center justify-between border-b border-white/5">
+    <div class="flex items-center gap-3">
+      <button routerLink="/tools" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-colors">
+        <span class="material-symbols-outlined text-white text-base">arrow_back_ios_new</span>
+      </button>
+      <div class="flex flex-col">
+        <h1 class="text-sm font-extrabold text-white tracking-tight">Simulador de Enlaces</h1>
+        <span class="text-[10px] text-primary font-bold uppercase tracking-widest">Nivel Intermedio</span>
+      </div>
+    </div>
+    <button (click)="clearWorkspace()" class="bg-red-500/10 hover:bg-red-500/20 px-3 py-1 rounded-full border border-red-500/20 transition-colors">
+      <span class="text-[10px] font-bold text-red-500 uppercase">Reiniciar</span>
+    </button>
+  </header>
+
+  <main class="flex-1 relative flex flex-col overflow-hidden">
+    <div 
+      cdkDropList 
+      #destinationList="cdkDropList"
+      [cdkDropListData]="workspaceAtoms"
+      (cdkDropListDropped)="drop($event)"
+      class="flex-1 relative flex items-center justify-center overflow-hidden px-6">
+      
+      <div class="absolute w-64 h-64 bg-primary/5 rounded-full blur-3xl -top-10 -left-10 animate-pulse"></div>
+      
+      <div *ngIf="workspaceAtoms.length === 2" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50%] h-[2px] bg-gradient-to-r from-blue-500 to-primary shadow-[0_0_15px_rgba(0,193,147,0.5)] z-0">
+        <div class="absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap bg-card-dark/80 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-full shadow-lg">
+          <span class="text-[10px] font-bold text-white uppercase flex items-center gap-1">
+            {{ bondType }} <span class="material-symbols-outlined text-[12px] text-primary">verified</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-around w-full max-w-sm z-10">
+        <div *ngFor="let atom of workspaceAtoms" cdkDrag class="flex flex-col items-center group cursor-grab active:cursor-grabbing">
+          <div [ngClass]="atom.type === 'metal' ? 'border-blue-500 bg-blue-500/10' : 'border-primary bg-primary/10'" 
+               class="w-24 h-24 rounded-full flex items-center justify-center border-2 shadow-2xl relative transition-all">
+            <span class="text-3xl font-black text-white">{{ atom.symbol }}</span>
+            <div class="absolute inset-0 rounded-full border border-white/10 animate-spin-slow"></div>
+          </div>
+          <div [ngClass]="atom.type === 'metal' ? 'bg-blue-500' : 'bg-primary'" 
+               class="absolute -top-2 -right-2 w-8 h-8 rounded-full flex items-center justify-center border-4 border-bg-dark">
+            <span class="text-xs font-bold text-white">{{ atom.charge }}</span>
+          </div>
+          <span class="mt-4 text-[10px] font-bold text-text-muted uppercase tracking-widest">{{ atom.name }}</span>
+        </div>
+      </div>
+
+      <div *ngIf="workspaceAtoms.length === 0" class="text-white/20 text-center pointer-events-none">
+        <span class="material-symbols-outlined text-5xl block mb-2">Science</span>
+        <p class="text-xs font-bold uppercase tracking-tighter">Arrastra elementos aquí</p>
+      </div>
+
+      <div *ngIf="workspaceAtoms.length > 0" class="absolute top-6 right-6 w-40 glass-panel rounded-2xl p-4 border-l-2 border-l-primary shadow-2xl animate-fade-in">
+        <p class="text-[8px] text-text-muted font-bold uppercase mb-1">Δ Electronegatividad</p>
+        <p class="text-sm font-extrabold text-primary">{{ deltaE | number:'1.1-1' }}</p>
+      </div>
+    </div>
+
+    <div class="glass-panel rounded-t-[32px] p-6 pb-8 border-t border-white/10 relative z-20">
+      <h3 class="text-sm font-bold text-white mb-4">Selector de Elementos</h3>
+      
+      <div 
+        cdkDropList 
+        #originList="cdkDropList"
+        [cdkDropListData]="availableAtoms"
+        [cdkDropListConnectedTo]="[destinationList]"
+        class="flex gap-3 overflow-x-auto pb-4 hide-scrollbar">
+        
+        <div *ngFor="let atom of availableAtoms" 
+             cdkDrag 
+             class="flex-shrink-0 w-16 h-20 rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center justify-center gap-1 hover:bg-white/10 transition-all cursor-grab active:cursor-grabbing">
+          <span class="text-xl font-black text-white">{{ atom.symbol }}</span>
+          <span [ngClass]="atom.type === 'metal' ? 'text-blue-400' : 'text-primary'" class="text-[9px] font-bold">{{ atom.electronegativity }}</span>
+          
+          <div *cdkDragPlaceholder class="opacity-20"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
