@@ -1,0 +1,39 @@
+<div class="flex flex-col h-screen max-w-md mx-auto bg-bg-dark shadow-2xl relative overflow-hidden">
+  <main class="flex-1 overflow-hidden relative z-10">
+    <router-outlet></router-outlet>
+  </main>
+
+  <nav class="shrink-0 bg-card-dark/95 backdrop-blur-lg border-t border-white/5 px-6 py-2 pb-6 z-50">
+    <div class="flex justify-between items-end">
+      
+      <a routerLink="/dashboard" 
+         routerLinkActive="text-primary active-nav" 
+         class="flex flex-col items-center gap-1 p-2 text-text-muted hover:text-white transition-colors group">
+        <span class="material-symbols-outlined text-[26px] group-[.active-nav]:scale-110 transition-transform">rocket_launch</span>
+        <span class="text-[10px] font-medium">Misiones</span>
+      </a>
+      
+      <a routerLink="/tools" 
+         routerLinkActive="text-primary active-nav" 
+         class="flex flex-col items-center gap-1 p-2 text-text-muted hover:text-white transition-colors group">
+        <span class="material-symbols-outlined text-[26px] group-[.active-nav]:scale-110 transition-transform" style="font-variation-settings: 'FILL' 1;">biotech</span>
+        <span class="text-[10px] font-medium">Lab</span>
+      </a>
+
+      <a routerLink="/social" 
+         routerLinkActive="text-primary active-nav" 
+         class="flex flex-col items-center gap-1 p-2 text-text-muted hover:text-white transition-colors group">
+        <span class="material-symbols-outlined text-[26px] group-[.active-nav]:scale-110 transition-transform" style="font-variation-settings: 'FILL' 1;">groups</span>
+        <span class="text-[10px] font-medium">Club</span>
+      </a>
+
+      <a routerLink="/profile" 
+         routerLinkActive="text-primary active-nav" 
+         class="flex flex-col items-center gap-1 p-2 text-text-muted hover:text-white transition-colors group">
+        <span class="material-symbols-outlined text-[26px] group-[.active-nav]:scale-110 transition-transform">person</span>
+        <span class="text-[10px] font-medium">Perfil</span>
+      </a>
+
+    </div>
+  </nav>
+</div>
