@@ -1,0 +1,13 @@
+/* Utilidades para scroll y efectos visuales */
+.hide-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+}
+
+.shadow-glow {
+    box-shadow: 0 0 15px -3px rgba(var(--primary-rgb, 59, 130, 246), 0.5);
+}

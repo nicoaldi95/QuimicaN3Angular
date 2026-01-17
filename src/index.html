@@ -13,6 +13,37 @@
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Manrope', 'sans-serif'],
+              display: ['Space Grotesk', 'sans-serif'],
+            },
+            colors: {
+              primary: '#00C193',
+              'primary-dark': '#00A383',
+              secondary: '#A855F7',
+              accent: '#84CC16',
+              'bg-dark': '#111828',
+              'card-dark': '#1E293B',
+              'card-lighter': '#334155',
+              text: '#F1F5F9',
+              'text-muted': '#94A3B8',
+              danger: '#EF4444',
+            },
+            boxShadow: {
+              'glow': '0 0 20px rgba(0, 193, 147, 0.25)',
+              'glow-purple': '0 0 20px rgba(168, 85, 247, 0.25)',
+            }
+          }
+        }
+      }
+    </script>
   
 </head>
 <body>
