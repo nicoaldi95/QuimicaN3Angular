@@ -1,0 +1,20 @@
+@keyframes slideUp { 
+  from { transform: translateY(100%); } 
+  to { transform: translateY(0); } 
+}
+
+@keyframes spin { 
+  from { transform: rotate(0deg); } 
+  to { transform: rotate(360deg); } 
+}
+
+/* Nota: Asegúrate de tener TailwindCSS configurado en tu proyecto ya que el HTML depende fuertemente de clases utilitarias. */
+/* Las clases personalizadas como 'hide-scrollbar' deberían estar en tu styles.css global o definidas aquí así: */
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
