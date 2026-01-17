@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-balancer',
-  imports: [],
+  imports: [
+    RouterLink
+  ],
   templateUrl: './balancer.html',
   styleUrl: './balancer.css',
 })
