@@ -1,0 +1,101 @@
+<div class="h-full flex flex-col bg-bg-dark overflow-hidden relative">
+  <header class="flex flex-col gap-0 px-4 pt-6 pb-2 shrink-0 z-20">
+    <div class="flex items-center justify-between mb-4">
+      <button routerLink="/dashboard" class="flex items-center justify-center size-10 rounded-full text-text-muted hover:text-white hover:bg-card-dark transition-colors">
+        <span class="material-symbols-outlined text-[28px]">close</span>
+      </button>
+      <h1 class="text-xs font-bold tracking-widest text-white/90 uppercase">Sesión de Repaso</h1>
+      <div class="flex items-center justify-center bg-card-dark rounded-full px-3 py-1 border border-white/10">
+        <span class="text-primary text-sm font-bold">5</span>
+        <span class="text-text-muted text-sm font-medium mx-1">/</span>
+        <span class="text-text-muted text-sm font-medium">20</span>
+      </div>
+    </div>
+    
+    <div class="w-full h-1.5 bg-card-dark rounded-full overflow-hidden">
+      <div class="h-full bg-primary w-[25%] rounded-full shadow-glow"></div>
+    </div>
+
+    @if (!showFeedback()) {
+      <div class="flex justify-center -mt-3.5 mb-2">
+        <div class="bg-bg-dark/90 backdrop-blur-md border border-white/10 rounded-full px-3 py-1 flex items-center gap-1.5 shadow-lg transform translate-y-2">
+          <span class="material-symbols-outlined text-yellow-400 text-[16px] fill-1">bolt</span>
+          <span class="text-xs font-bold text-yellow-400/90">+15 XP</span>
+        </div>
+      </div>
+    }
+  </header>
+
+  <main class="flex-1 flex flex-col p-4 relative z-10 w-full overflow-y-auto hide-scrollbar">
+    <div class="relative w-full flex-1 min-h-[400px] bg-card-dark rounded-3xl shadow-2xl border border-white/5 flex flex-col overflow-hidden">
+      <div class="flex flex-col p-6 pb-4 h-full relative z-10">
+        <div class="flex justify-between items-start mb-4">
+          <span class="text-text-muted text-[10px] font-bold tracking-widest uppercase bg-bg-dark px-2 py-1 rounded">Química Inorgánica</span>
+        </div>
+        
+        <div class="mt-2">
+          <h2 class="text-2xl font-extrabold leading-tight text-white mb-1">
+            ¿Cuál es el estado de oxidación del Mn en KMnO<sub class="text-lg">4</sub>?
+          </h2>
+          <p class="text-text-muted text-sm font-medium">Selecciona la opción correcta:</p>
+        </div>
+
+        <div class="flex-1 flex items-center justify-center relative my-2 min-h-[140px]">
+          <div class="absolute inset-0 rounded-full opacity-40 bg-radial-gradient from-primary/20 to-transparent"></div>
+          <div class="relative z-10 w-32 h-32 flex items-center justify-center text-6xl">
+              🧪
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-3 mt-auto mb-2">
+          <button (click)="selectOption(7)" 
+            [class]="getOptionClass(7)"
+            class="flex items-center justify-center w-full py-5 px-6 rounded-2xl transition-all duration-200 border">
+            <span class="text-2xl font-extrabold text-white tracking-tight">+7</span>
+          </button>
+          
+          <button (click)="selectOption(5)"
+            [class]="getOptionClass(5)"
+            class="flex items-center justify-center w-full py-5 px-6 rounded-2xl transition-all duration-200 border">
+            <span class="text-2xl font-extrabold text-white tracking-tight">+5</span>
+          </button>
+          
+          <button (click)="selectOption(2)"
+            [class]="getOptionClass(2)"
+            class="flex items-center justify-center w-full py-5 px-6 rounded-2xl transition-all duration-200 border">
+            <span class="text-2xl font-extrabold text-white tracking-tight">+2</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  @if (showFeedback()) {
+    <div class="absolute inset-0 z-50 flex flex-col justify-end bg-black/60 backdrop-blur-sm animate-fade-in">
+      <div class="bg-card-dark border-t border-white/10 rounded-t-[2rem] p-6 pb-8 shadow-2xl animate-slide-up">
+        <div class="flex flex-col items-center mb-6">
+          <div class="size-16 rounded-full bg-primary/10 border-4 border-primary/20 flex items-center justify-center mb-3 shadow-glow">
+            <span class="material-symbols-outlined text-[36px] text-primary fill-0 font-bold">check_circle</span>
+          </div>
+          <h2 class="text-2xl font-extrabold text-primary tracking-tight">¡Correcto!</h2>
+        </div>
+        
+        <div class="w-full bg-bg-dark/50 rounded-2xl p-5 mb-6 border border-white/5">
+          <h3 class="text-text-muted font-bold text-xs uppercase tracking-wider mb-2">Explicación</h3>
+          <p class="text-gray-300 text-sm leading-relaxed">
+            En el <span class="font-bold text-white">KMnO₄</span>, el K es +1 y cada O es -2. Como la molécula es neutra: 
+            <span class="block mt-2 font-mono text-primary text-center bg-black/30 py-2 rounded-lg text-xs">
+                (+1) + Mn + 4(-2) = 0 <br/>
+                Mn - 7 = 0 → <span class="text-white font-bold">Mn = +7</span>
+            </span>
+          </p>
+        </div>
+
+        <button routerLink="/dashboard" class="w-full py-4 bg-primary hover:bg-primary-dark text-bg-dark font-extrabold text-lg rounded-2xl shadow-glow transition-all active:scale-[0.97] flex items-center justify-center gap-2">
+          Siguiente Pregunta
+          <span class="material-symbols-outlined font-bold">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+  }
+</div>
