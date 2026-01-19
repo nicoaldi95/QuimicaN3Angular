@@ -7,9 +7,10 @@ import { Social } from './features/social/social';
 import { Tools } from './features/tools/tools';
 import { Perfil } from './features/perfil/perfil';
 import { MolecularBond } from './features/molecular-bond/molecular-bond';
+import { Login } from './features/login/login';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'dashboard', component: Dashboard },
   { path: 'tools', component: Tools },
   { path: 'tools/periodic-table', component: PeriodicTable },
@@ -18,4 +19,5 @@ export const routes: Routes = [
   { path: 'social', component: Social },
   { path: 'profile', component: Perfil },
   { path: 'quiz', component: Quiz },
+  { path: 'login', component:Login }
 ];
