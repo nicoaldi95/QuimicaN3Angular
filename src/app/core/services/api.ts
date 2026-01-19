@@ -6,7 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiService {
-  private baseUrl = 'https://quimica.ameliasoft.net/api';
+  protected baseUrl = 'https://quimica.ameliasoft.net/api';
+
+  getBaseUrl(): string {
+    return this.baseUrl;
+  }
 
   constructor(private http: HttpClient) {}
 

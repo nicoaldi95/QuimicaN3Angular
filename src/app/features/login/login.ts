@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from '../../core/services/auth.service';
+import { RegisterRequest } from '../../core/models/auth.models';
 
 type ViewState = 'welcome' | 'login' | 'register';
 
@@ -28,7 +30,7 @@ currentView = signal<ViewState>('welcome');
   // Hero Image - Flask
   flaskImage = "url('https://lh3.googleusercontent.com/aida-public/AB6AXuArc94wdmcvkjgLEG3cY7FaYQ6EHpaC-qds7UdEXdPoi_umtFN6uH1grFZUsXKqIkEiGGuH871nyMKmyQRF9aUiiRiME5sQIIXKRtXxqABz4lVjjPeIJkENDc3_lrniVzm9QMo5R1UOf8gLSv3_k_Z2FBoP0VoqNHDAa8lurpZm2O8QI5xFBaH14ttlPbGC2VOLZvRiuEeKLkXDOgQNR3CYbyqsr96b6wwvV16v50Kx0W43A7Ggp6ix398e64C69iYIFB47XorL9lA')";
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
@@ -37,7 +39,7 @@ currentView = signal<ViewState>('welcome');
     this.registerForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(8)]]
     });
   }
 
@@ -52,19 +54,22 @@ currentView = signal<ViewState>('welcome');
   }
 
   onLogin() {
-    if (this.loginForm.valid) {
-      console.log('Login attempt:', this.loginForm.value);
-      alert('¡Inicio de sesión simulado exitoso!');
-    } else {
-      this.loginForm.markAllAsTouched();
-    }
+    // Iniciar login con Google SSO
+    this.authService.login();
   }
 
   onRegister() {
     if (this.registerForm.valid) {
-      console.log('Register attempt:', this.registerForm.value);
-      alert('¡Registro simulado exitoso!');
-      this.navigateTo('login');
+      const data: RegisterRequest = this.registerForm.value;
+      this.authService.register(data).subscribe({
+        next: (response) => {
+          console.log(response.message);
+          this.navigateTo('login');
+        },
+        error: (err) => {
+          console.error(err.error.error || 'Error en el registro');
+        }
+      });
     } else {
       this.registerForm.markAllAsTouched();
     }
